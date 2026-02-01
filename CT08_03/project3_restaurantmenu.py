@@ -52,6 +52,10 @@ dishes = {
     "water": 100.00
 }
 
+order = {
+
+}
+
 dish = ""
 end = False
 price = 0
@@ -78,18 +82,17 @@ dish = input("What would you like to order? Key in 1 dish and type end when you 
 #         while True:
 
 
-
-while end == False:
+while True:
     if dish in dishes:
         for key, value in dishes.items():
             price = price + value 
-            print(price)          
-        dish = input("Would you like anything else? ").lower().strip()
+        print(price)          
         print(dish)
-        if dish == "end":
-            end = True
-    else:
-        print("We do not have that sadly")
+dish = input("Would you like anything else? ").lower().strip()
+if dish == "end":
+    end = True
+else:
+    print("We do not have that sadly")
 
 while removeCount == False and addCount == False and end == False:
     if dish == "end":
