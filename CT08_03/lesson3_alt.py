@@ -15,4 +15,11 @@ for key, value in menu.items():
     print(f"{key}: {value}")
 
 while True:
-    order = input("What would you like to order")
+    order = input("What would you like to order. Type 'end' when you are done. ").lower.strip
+
+    if order not in menu:
+        print("Sorry but we do not have that.")
+        continue
+    
+    if order in menu:
+        ordered[order]
