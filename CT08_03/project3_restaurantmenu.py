@@ -52,48 +52,33 @@ dishes = {
     "water": 100.00
 }
 
-order = {
+ordered = {
 
 }
-
-dish = ""
-end = False
-price = 0
-
-remove = ""
-removeCount = False
-
-add = ""
-addCount = False
 
 print("Here is our menu:")
 for key, value in dishes.items():
     print(f"{key}: {value}")
 
-dish = input("What would you like to order? Key in 1 dish and type end when you are done: ").lower().strip()
-
-# while True:
-#     dish = input("What would you like to order? Key in 1 dish and type end when you are done: ").lower().strip()
-
-#     if dish == "end":
-#         break
-    
-#     if dish in dishes:
-#         while True:
-
-
 while True:
-    if dish in dishes:
-        for key, value in dishes.items():
-            price = price + value 
-        print(price)          
-        print(dish)
-dish = input("Would you like anything else? ").lower().strip()
-if dish == "end":
-    end = True
-else:
-    print("We do not have that sadly")
+    dish = input("What would you like to order? Key in 1 dish and type end when you are done: ").lower().strip()
+    
+    if dish == "end":
+        break
 
+    if dish not in dishes:
+        print("Sorry but we do not have that.")
+        continue
+
+        print(f"We have added {order} into your cart")         
+            
+    if dish in order:
+        ordered[order] += stuff[order]
+    else:
+        ordered[order] = stuff[order]           
+        print(f"{order} cost ${stuff[order]}.")
+        continue        
+      
 while removeCount == False and addCount == False and end == False:
     if dish == "end":
         remove = input("Would you like to remove anything? Yes or No. ").lower().strip()
