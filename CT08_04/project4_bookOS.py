@@ -15,6 +15,7 @@ ordered = {
 }
 
 price = 0
+discount = 0
 
 print(" ")
 print("Welcome to the Bookshop")
@@ -63,8 +64,10 @@ for key, value in ordered.items():
     price = price + value
 
     if price > 2000:
+        discount = (price / 100) * 10
         price = (price / 100) * 90
         print(f"Total: ${price}")
+        print(f"Discount: ${discount}")
     else:
         print(f"Total: ${price}")
 
