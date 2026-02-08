@@ -56,6 +56,9 @@ ordered = {
 
 }
 
+removeDish = " "
+addDish = " "
+
 print("Here is our menu:")
 for key, value in dishes.items():
     print(f"{key}: {value}")
@@ -80,45 +83,58 @@ while True:
         ordered[dish] = dishes[dish]           
         print(f"{dish} cost ${dishes[dish]}.")
         continue        
-      
+    
+print("Here is your order:")
+for key, value in ordered.items():
+    print(f"{key}: {value}")
+
 while True:
     # task 3 is being done partially. need to have a while loop to repeatedly ask qns
     # the condition will be that as long as the response is not yes/y or no/n, the question will be repeat itself
     # the below will be inside the condition when the response is yes.
+    removeDish = input("Would you like to remove any dishes? Type end when you are done. ").lower().strip()
+
+    if removeDish in ordered:
+        ordered[dish] -= ordered[removeDish]
+        # ordered[order] += stuff[order]
+    elif removeDish not in ordered and removeDish in dishes:
+        print("You did not even order this dish.")
+    else:
+        print("This dish does not exist")
+        continue     
+    print(ordered)   
+
+    if removeDish == "end":
+        break
+
+while True:
+    # task 3 is being done partially. need to have a while loop to repeatedly ask qns
+    # the condition will be that as long as the response is not yes/y or no/n, the question will be repeat itself
+    # the below will be inside the condition when the response is yes.
+    addDish = input("Would you like to add any dishes? Type end when you are done. ").lower().strip()
 
     if dish in ordered:
-        ordered[dish] += dishes[dish]
+        ordered[dish] += dishes[dish] 
+        print(f"{dish} cost ${dishes[dish]}.")  
+    elif dish not in ordered and dish in dishes:
+        ordered[dish] = dishes[dish]           
+        print(f"{dish} cost ${dishes[dish]}.")   
         # ordered[order] += stuff[order]
     else:
-        ordered[dish] = dishes[dish]
-        print(f"{dish} cost ${dishes[dish]}.")
-        # ordered[order] = stuff[order]           
-        # print(f"{order} cost ${stuff[order]}.")
-        continue        
-    
+        print("This dish does not exist")
+        continue     
+    print(ordered)   
+
+    if addDish == "end":
+        break
+
+print(" ")
+print(" ")
+print(" ")            
+print("This is your total amount:")
+for key, value in ordered.items():
+    print(f"{key.title()}: ${value}")
+for key, value in ordered.items():
+    price = price + value   
 # suggestions: reconsider the method to do the remaining task 3,4, challenge 1 and 2
 # there is no need to do another while loop, can do in the above while loop
-while removeCount == False and addCount == False and end == False:
-    if dish == "end":
-        remove = input("Would you like to remove anything? Yes or No. ").lower().strip()
-        if remove == "yes":
-            removeCount = False
-        elif remove == "no":
-            removeCount = True
-            while addCount == False:
-                add = input("Would you like to add anything? Yes or No. ").lower().strip()
-                if add == "yes":
-                    addCount = False
-                elif add == "no":
-                    addCount = True
-                else:
-                    removeCount = False
-        else:
-            removeCount = False
-    else:
-        dish = input("Would you like anything else? ").lower().strip()
-        for key, value in dishes.items():
-            # need to declare a price somewhere first
-            price = price + value 
-            print(price)   
-print("Your total bill is " + str(price))
