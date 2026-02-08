@@ -71,10 +71,17 @@ while True:
 
     if dish not in dishes:
         print("Sorry but we do not have that.")
-        continue
-
-        print(f"We have added {order} into your cart")         
+        continue  
             
+    if dish in ordered:
+        ordered[dish] += dishes[dish] 
+        print(f"{dish} cost ${dishes[dish]}.")  
+    else:
+        ordered[dish] = dishes[dish]           
+        print(f"{dish} cost ${dishes[dish]}.")
+        continue        
+      
+while True:
     # task 3 is being done partially. need to have a while loop to repeatedly ask qns
     # the condition will be that as long as the response is not yes/y or no/n, the question will be repeat itself
     # the below will be inside the condition when the response is yes.
