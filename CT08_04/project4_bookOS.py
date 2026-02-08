@@ -9,14 +9,15 @@ stuff = {
     "glue": 300,
     "calculator": 3500
 }
-
+# for empty list it is ok to put ordered = {} as well
 ordered = {
 
 }
 
 price = 0
 discount = 0
-
+# alternative for the below two line could be print("\nWelcome to the Bookshop")
+# \n if infront leave a space above, if at the back leave a space below
 print(" ")
 print("Welcome to the Bookshop")
 print("Ordering System (BOS)!")
@@ -54,6 +55,7 @@ while True:
         if yes_or_no != "yes" or "no":
             print(f"We did not add {order} into your cart. Please type a proper answer.")
 
+# suggested alternative for the below 4 line could be print("\n\n\nThis is your total amount:")
 print(" ")
 print(" ")
 print(" ")            
@@ -74,3 +76,15 @@ for key, value in ordered.items():
 input("Please key in your credit card password here: ")
 input("Please key in your credit card number here: ")
 input("Please key in your home address here: ")
+
+
+# one of the output is belowThis is your total amount:
+# Calculator: $3500
+# Glue: $300
+# Total: $3150.0
+# Discount: $350.0
+# Total: $3105.0
+# Discount: $345.0
+# reason: need to check the if else for discount, should it be in the for loop?
+
+# Did not managed to do BOS challenge 1 for nested dictionary, will be good to try it.

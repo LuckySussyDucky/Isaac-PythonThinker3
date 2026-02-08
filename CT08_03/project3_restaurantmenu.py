@@ -66,6 +66,9 @@ while True:
     if dish == "end":
         break
 
+    # for removal of item, can consider checking here
+    # need to check for the remove in the response 
+
     if dish not in dishes:
         print("Sorry but we do not have that.")
         continue  
@@ -79,6 +82,23 @@ while True:
         continue        
       
 while True:
+    # task 3 is being done partially. need to have a while loop to repeatedly ask qns
+    # the condition will be that as long as the response is not yes/y or no/n, the question will be repeat itself
+    # the below will be inside the condition when the response is yes.
+
+    if dish in ordered:
+        ordered[dish] += dishes[dish]
+        # ordered[order] += stuff[order]
+    else:
+        ordered[dish] = dishes[dish]
+        print(f"{dish} cost ${dishes[dish]}.")
+        # ordered[order] = stuff[order]           
+        # print(f"{order} cost ${stuff[order]}.")
+        continue        
+    
+# suggestions: reconsider the method to do the remaining task 3,4, challenge 1 and 2
+# there is no need to do another while loop, can do in the above while loop
+while removeCount == False and addCount == False and end == False:
     if dish == "end":
         remove = input("Would you like to remove anything? Yes or No. ").lower().strip()
         if remove == "yes":
@@ -98,6 +118,7 @@ while True:
     else:
         dish = input("Would you like anything else? ").lower().strip()
         for key, value in dishes.items():
+            # need to declare a price somewhere first
             price = price + value 
             print(price)   
 print("Your total bill is " + str(price))
