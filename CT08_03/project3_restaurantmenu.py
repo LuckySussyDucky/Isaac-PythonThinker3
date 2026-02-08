@@ -68,18 +68,17 @@ while True:
 
     if dish not in dishes:
         print("Sorry but we do not have that.")
-        continue
-
-        print(f"We have added {order} into your cart")         
+        continue  
             
-    if dish in order:
-        ordered[order] += stuff[order]
+    if dish in ordered:
+        ordered[dish] += dishes[dish] 
+        print(f"{dish} cost ${dishes[dish]}.")  
     else:
-        ordered[order] = stuff[order]           
-        print(f"{order} cost ${stuff[order]}.")
+        ordered[dish] = dishes[dish]           
+        print(f"{dish} cost ${dishes[dish]}.")
         continue        
       
-while removeCount == False and addCount == False and end == False:
+while True:
     if dish == "end":
         remove = input("Would you like to remove anything? Yes or No. ").lower().strip()
         if remove == "yes":
