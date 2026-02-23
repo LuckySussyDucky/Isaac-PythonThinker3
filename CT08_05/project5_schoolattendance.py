@@ -9,18 +9,19 @@
 # - This dictionary will serve as the database for all subsequent tasks.
 
 attendance = {    
-    "Alice": [True],
-    "Bob": [False],
-    "Charlie": [True],
-    "Darius": [True],
-    "Emma": [False],
-    "Faith": [True],
-    "Gabriel": [False],
-    "Isabella": [True],
-    "John": [False],
+    "alice": [True, False, True],
+    "bob": [False, False, True],
+    "charlie": [True, True, True],
+    "darius": [True, False, False],
+    "emma": [False, True, False],
+    "faith": [True, True, True],
+    "gabriel": [False, False, True],
+    "isabella": [True, False, True],
+    "john": [False, True, False],
 }
 
-
+counter = 0
+random = 0
 ## Task 2: Take Student Attendance
 # **Take Attendance​**
 
@@ -54,7 +55,7 @@ def takeAttendance(attendance):
                 continue
 
     return attendance
-
+# takeAttendance(attendance)
 
 ## Task 3: Calculate Attendance Percentage
 # **Create a function called attendance_percentage()​**
@@ -78,4 +79,89 @@ def attendancePercentage(name, attendanceDictionary):
         if status:
             sumPresent += 1
 
-    return sumPresent / len(attendance)
+    return sumPresent / len(attendance) * 100
+
+# print(attendancePercentage("Alice", attendance))
+
+# ## Task 4: Notify low attendance
+# **Identify students with attendance below a defined threshold and notify them.​**
+
+# Function : notify_low_attendance()​
+
+# Params:​
+# - attendance_dict (dictionary): Attendance database with student names as keys and attendance records as values.​
+# - threshold (float): Minimum attendance percentage required.​
+
+# Return:​
+# - low_attendance_students(list): A list of student names with attendance below the threshold
+
+def lowAttendence(attendanceDictionary, threshold):
+    lowAttendenceStudent = [
+
+]
+    for name in attendanceDictionary:
+        attendancePercentageStudent = attendancePercentage(name, attendanceDictionary)
+        if attendancePercentageStudent < threshold:
+            lowAttendenceStudent.append(name)
+    return lowAttendenceStudent
+
+# print(lowAttendence(attendance, 50))
+
+
+# ## Task 5: Create the Menu System
+# **Build an interactive menu to access the attendance system's features.**​
+
+# Display a menu with the following options:​
+# - 1: Take Attendance​
+# - 2: Calculate Attendance Percentage for a Student​
+# - 3: Notify Low Attendance​
+# - 4: Exit Program​
+
+# Based on the user’s choice:​
+# - Call the respective function with the necessary inputs.​
+# - Display the results of the chosen action
+
+
+def menu():
+    counter2 = 0
+    counter3 = 0
+    counter4 = 0
+    print(" ")
+    print("Welcome to the School Attendance System (SAS)")
+    print(" ")
+    print("What would you like to do:")
+    print("1: Take Attendance")
+    print("2: Calculate Attendance Percentage for a Student")
+    print("3: Notify Low Attendance")
+    print("4: Exit Program")
+    print(" ")
+    counter = input("Please key in (1, 2, 3, 4): ").strip()
+    while counter2 == 0:
+        while counter != "1" and counter != "2" and counter != "3" and counter != "4":
+            print("Please only enter 1 - 4")
+            counter = input("Please key in (1, 2, 3, 4): ").strip()
+
+        while counter3 == 0:
+            if counter == "1":
+                takeAttendance(attendance)
+                counter3 = 1
+                counter2 = 1
+            elif counter == "2":
+                while counter4 == 0:
+                    student = input("Please key in your student name: ").lower().strip()
+                    if student not in attendance:
+                        print(" ")
+                        print("Please type a name from the class")
+                    elif student in attendance:
+                        print(f"The percentage is {attendancePercentage(student, attendance)}%")
+                        counter3 = 1
+                    else:
+                        random = 1 
+                    counter4 = 1   
+            elif counter == "3":
+                print(lowAttendence(attendance, 50)) 
+                counter = 0
+            else:
+                counter2 = 1
+            break
+menu()
