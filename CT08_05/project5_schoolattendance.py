@@ -50,8 +50,8 @@ def takeAttendance(attendance):
                 break
 
             if attendanceChecker != "n" and attendanceChecker != "y":
-                attendanceChecker = input(f"Is {student} present? Y/N ").lower().strip()
                 print("Please type your answer properly.")
+                attendanceChecker = input(f"Is {student} present? Y/N ").lower().strip()
                 continue
 
     return attendance
@@ -108,6 +108,22 @@ def lowAttendence(attendanceDictionary, threshold):
 # print(lowAttendence(attendance, 50))
 
 
+# ## Challenge: View All Attendances
+# Add a view_attendance() function. ​
+# Params:​
+# - attendance_dict (dictionary): Attendance database with student names as keys and attendance records as values.​
+
+# Return: none
+
+# *In this case, this function just needs to print out each student’s attendance.​*
+# *Remember to add this option to your menu.​*
+# *This is a challenge! Try this on your own without your Code Mentor’s guidance.*
+
+def ViewAll():
+    for name in attendance:
+        print(f"{name}: {attendancePercentage(str(name), attendance)}%")
+# ViewAll()
+
 # ## Task 5: Create the Menu System
 # **Build an interactive menu to access the attendance system's features.**​
 
@@ -123,45 +139,52 @@ def lowAttendence(attendanceDictionary, threshold):
 
 
 def menu():
-    counter2 = 0
-    counter3 = 0
-    counter4 = 0
-    print(" ")
-    print("Welcome to the School Attendance System (SAS)")
-    print(" ")
-    print("What would you like to do:")
-    print("1: Take Attendance")
-    print("2: Calculate Attendance Percentage for a Student")
-    print("3: Notify Low Attendance")
-    print("4: Exit Program")
-    print(" ")
-    counter = input("Please key in (1, 2, 3, 4): ").strip()
-    while counter2 == 0:
-        while counter != "1" and counter != "2" and counter != "3" and counter != "4":
-            print("Please only enter 1 - 4")
-            counter = input("Please key in (1, 2, 3, 4): ").strip()
+    while True:
+        print(" ")
+        print("Welcome to the School Attendance System (SAS)")
+        print(" ")
+        print("What would you like to do:")
+        print("1: Take Attendance")
+        print("2: Calculate Attendance Percentage for a Student")
+        print("3: Notify Low Attendance")
+        print("4: View All Attendance")
+        print("5: Exit Program")
+        print(" ")
 
-        while counter3 == 0:
-            if counter == "1":
-                takeAttendance(attendance)
-                counter3 = 1
-                counter2 = 1
-            elif counter == "2":
-                while counter4 == 0:
-                    student = input("Please key in your student name: ").lower().strip()
-                    if student not in attendance:
-                        print(" ")
-                        print("Please type a name from the class")
-                    elif student in attendance:
-                        print(f"The percentage is {attendancePercentage(student, attendance)}%")
-                        counter3 = 1
-                    else:
-                        random = 1 
-                    counter4 = 1   
-            elif counter == "3":
-                print(lowAttendence(attendance, 50)) 
-                counter = 0
+        counter = input("Please key in (1, 2, 3, 4 or 5): ").strip()
+        while counter != "1" and counter != "2" and counter != "3" and counter != "4" and counter != "5":
+            print("Please only enter 1 - 5")
+            counter = input("Please key in (1, 2, 3, 4 or 5): ").strip()
+
+        
+        if counter == "1":
+            takeAttendance(attendance)
+        elif counter == "2":
+            student = input("Please key in your student name: ").lower().strip()
+            if student not in attendance:
+                print(" ")
+                print("Please type a name from the class")
+            elif student in attendance:
+                print(f"The percentage is {attendancePercentage(student, attendance)}%")
             else:
-                counter2 = 1
+                random = 1  
+        elif counter == "3":
+            print(lowAttendence(attendance, 50)) 
+        elif counter == "4":
+            ViewAll()
+        else:
             break
+
+
+# ## Challenge: View All Attendances
+# Add a view_attendance() function. ​
+# Params:​
+# - attendance_dict (dictionary): Attendance database with student names as keys and attendance records as values.​
+
+# Return: none
+
+# *In this case, this function just needs to print out each student’s attendance.​*
+# *Remember to add this option to your menu.​*
+# *This is a challenge! Try this on your own without your Code Mentor’s guidance.*
+
 menu()
