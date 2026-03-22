@@ -1,7 +1,7 @@
 import os
 
 filepath = os.getcwd()
-fullpath = os.path.join(filepath, "planner.txt")
+fullpath = os.path.join(filepath, "CT08_07/planner.txt")
 
 # ## Task 1: Display a Menu
 # **Create a menu-driven system that lets the user choose actions for the task list program.​**
@@ -46,7 +46,7 @@ while True:
             if overwrite.lower() == "y":
                 with open(fullpath, "w") as file:
                     file.write("My Task List\n")
-                print("Task file recreated.")
+                print("Task file created.")
             else:
                 print("File not overwritten.")
         else:
@@ -69,7 +69,7 @@ while True:
         if len(tasks) <= 1:
             print("No tasks found!")
         else:
-            for i, task in enumerate(tasks[1:], start=1):
+            for i, task in enumerate(tasks[1:], start = 1):
                 print(f"{i}. {task.strip()}")
 
 
@@ -144,6 +144,7 @@ while True:
             print("Task deleted.")
 
     elif choice == "6":
+         print("Exiting program...")
          break
     
     else:

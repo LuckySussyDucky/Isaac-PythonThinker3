@@ -1,0 +1,8 @@
+
+This text has 3401 of the letter a
+This text has 4835 of the letter e
+This text has 2932 of the letter i
+This text has 3227 of the letter o
+This text has 1310 of the letter u
+The percentage of vowels is 29.64941758386981%
+               
