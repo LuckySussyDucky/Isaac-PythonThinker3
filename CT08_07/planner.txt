@@ -1,6 +1,6 @@
 My Task List
-idk
-more idk
-idk x100
-idk idk
-idkdk
+homework [HIGH]
+wash [LOW]
+buy food [HIGH]
+eat [HIGH]
+eat part 2 [MEDUIM]

@@ -58,20 +58,38 @@ def identifyLetters(vowel):
     print(f"This text has {counter} of the letter {vowel}")
     return counter
 
-totalLetters = 0
-
 print(" ")
 
-totalLetters += identifyLetters("a")
+counter = 0
+with open(fullpath, "r") as file:
+    for lines in file:
+        for words in lines:
+            if words.lower() == "a":
+                counter += 1
 
-totalLetters += identifyLetters("e")
+with open(fullpath, "r") as file:
+    for lines in file:
+        for words in lines:
+            if words.lower() == "e":
+                counter += 1
 
-totalLetters += identifyLetters("i")
+with open(fullpath, "r") as file:
+    for lines in file:
+        for words in lines:
+            if words.lower() == "i":
+                counter += 1
 
-totalLetters += identifyLetters("o")
-
-totalLetters += identifyLetters("u")
-
+with open(fullpath, "r") as file:
+    for lines in file:
+        for words in lines:
+            if words.lower() == "o":
+                counter += 1
+                
+with open(fullpath, "r") as file:
+    for lines in file:
+        for words in lines:
+            if words.lower() == "u":
+                counter += 1
 print(" ")
 
 # ## Task 4: Find the Percentage of Vowels
@@ -84,7 +102,8 @@ print(" ")
 
 # Display the percentage with 2 decimal places.
 
-print(f"The percentage of vowels is {(totalLetters / totalCharacters) * 100}%")
+print(f"The total number of vowels is {counter}.")
+print(f"The percentage of vowels is {round((counter / totalCharacters), 2) * 100}%")
 
 print(" ")
 
@@ -109,7 +128,33 @@ This text has {identifyLetters("e")} of the letter e
 This text has {identifyLetters("i")} of the letter i
 This text has {identifyLetters("o")} of the letter o
 This text has {identifyLetters("u")} of the letter u
-The percentage of vowels is {(totalLetters / totalCharacters) * 100}%
+The percentage of vowels is {(counter / totalCharacters) * 100}%
 """)
     
+    print(" ")
     print("Successfully saved values")
+
+
+import string
+
+with open(fullpath, "r") as file:
+    files = file.read()
+
+word = input("What word would you like to know the total amount of? ")
+
+clear_text = files
+for p in string.punctuation:
+    clear_text = clear_text.replace(p, " ")
+print(clear_text)
+
+words = clear_text.lower().split()
+
+count = 0
+for w in words:
+    if w == word:
+        count += 1
+print(f"There is {count} words of the word '{word}'")
+
+# with open(fullpath, "r") as file:
+#     for lines in file:
+#         print(lines)

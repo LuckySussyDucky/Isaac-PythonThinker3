@@ -24,9 +24,10 @@ while True:
     1: Create a new task file
     2: View all tasks.
     3: Add a new task.
-    4: Mark a task as done.​
-    5: Delete a task.
-    6: Exit the program.
+    4: Mark a task as done.
+    5: Unmark completed task.
+    6: Delete a task.
+    7: Exit the program.
     """)
 
     choice = input("What would you like to do? ")
@@ -47,8 +48,10 @@ while True:
                 with open(fullpath, "w") as file:
                     file.write("My Task List\n")
                 print("Task file created.")
-            else:
+            elif overwrite.lower() == "n":
                 print("File not overwritten.")
+            else:
+                print("You did not answer properly. File not overwritten.")
         else:
             with open(fullpath, "w") as file:
                 file.write("My Task List\n")
@@ -69,6 +72,15 @@ while True:
         if len(tasks) <= 1:
             print("No tasks found!")
         else:
+            num = 0
+            for i in range(1, len(tasks), 1):
+                if "[HIGH]" in tasks[num]:
+                    tasks[num] == tasks[num]
+                elif "[MEDUIM]" in tasks[num]:
+                    tasks[num] == tasks[num]
+                elif "[LOW]" in tasks[num]:
+                    tasks[num], tasks[num + 1] = tasks[num + 1], tasks[num]
+                num += 1
             for i, task in enumerate(tasks[1:], start = 1):
                 print(f"{i}. {task.strip()}")
 
@@ -83,10 +95,32 @@ while True:
     elif choice == "3":
         new_task = input("Enter the new task: ")
 
-        with open(fullpath, "a") as file:
-            file.write(new_task + "\n")
+        piority = input("How important is this task? (high/meduim/low): ").strip().lower()
 
-        print("Task added.")
+        if piority == "high":
+            with open(fullpath, "a") as file:
+                file.write(new_task + " [HIGH]" + "\n")
+                print("Task added.")
+
+        elif piority == "meduim":
+            with open(fullpath, "a") as file:
+                file.write(new_task + " [MEDUIM]" + "\n")
+                print("Task added.")
+
+        elif piority == "low":
+            with open(fullpath, "a") as file:
+                file.write(new_task + " [LOW]" + "\n")
+                print("Task added.")
+
+        else:
+            print("Please key in the piority properly.")
+            print("Task has not been added.")
+
+            ## Autoset to low piority
+            # with open(fullpath, "a") as file:
+            #     file.write(new_task + " [LOW]" + "\n")
+            #     print("Task added.")
+
 
 
 # ## Task 5: Mark a Task as “done”
@@ -116,6 +150,25 @@ while True:
 
             print("Task marked as done.")
 
+    elif choice == "5":
+        with open(fullpath, "r") as file:
+            tasks = file.readlines()
+
+        for i, task in enumerate(tasks[1:], start=1):
+            print(f"{i}. {task.strip()}")
+
+        num = int(input("Enter the task number to unmark as done: "))
+
+        if "(Done)" in tasks[num]:
+            tasks[num] = tasks[num].replace("(Done)", "")
+            print(tasks)
+
+            with open(fullpath, "w") as file:
+                file.writelines(tasks)
+
+            print("Task undone.")
+        else:
+            print("This task was not marked as done")
 
 # ## Task 6: Delete a Task
 # **Remove a task from the file.​**
@@ -125,9 +178,9 @@ while True:
 # - Remove the selected task from the file.​
 # - Save the updated tasks back to tasks.txt.
 
-    elif choice == "5":
+    elif choice == "6":
         with open(fullpath, "r") as file:
-                    tasks = file.readlines()
+            tasks = file.readlines()
 
         if len(tasks) <= 1:
             print("No tasks found!")
@@ -143,7 +196,7 @@ while True:
 
             print("Task deleted.")
 
-    elif choice == "6":
+    elif choice == "7":
          print("Exiting program...")
          break
     
