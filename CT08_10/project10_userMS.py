@@ -62,8 +62,9 @@ def create_new_user(user_db):
     print(f"Username created: {username}")
     print(f"Password generated: {password}")
     
-    user_db.setdefault(username, []).append("password")
+    user_db.setdefault(username, []).append(password)
 
+    print(user_db.values())
     return(user_db)
 
 # ## Task 3: Update password
@@ -83,7 +84,7 @@ def create_new_user(user_db):
 def update_password(user_db):
     username = input("Enter Your username: ")
     Cpassword = input("Enter your current password: ")
-    if Cpassword in user_db and username in user_db:
+    if username in user_db:
         print(f"Changed password to {password} for {username}.")
         password = generate_password(12)
         user_db[username] = password
@@ -140,13 +141,9 @@ def login(user_db):
 # *Challenge: Mask part of the password. i.e. put (*) instead of the real password.*
 
 def view_user_data(user_db):
-    for key, value in user_db.items:
-        Bpassword = ""
+    for key, value in user_db.items():
         print(f"Username: {key}")
-        length = len(value)
-        for i in range(length):
-            Bpassword += "*"
-        print(f"Password: {Bpassword}")
+        print(f"Password: {value}")
 
 # ## Task 6: Build a menu system
 
