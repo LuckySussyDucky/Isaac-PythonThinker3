@@ -127,28 +127,28 @@ import os
 
 filepath = os.getcwd()
 input_fullpath = os.path.join(filepath, "CT08_11/input.txt")
-output_fullpath = os.path.join(filepath, "CT08_11/input.txt")
+output_fullpath = os.path.join(filepath, "CT08_11/output.txt")
 
 def caesar_shift_file(input_fullpath, output_fullpath, key, mode):
-    if os.path.exists(input_fullpath):
+    if os.path.exists(input_fullpath) and os.path.exists(output_fullpath):
         if mode.strip().lower() == "encrypt":
-            with open(input_fullpath, "r") as file:
-                for lines in file:
+            with open(input_fullpath, "r") as infile:
+                for lines in infile:
                     encrypted_lines = str(caeser_shift_sentence(lines, key, "encrypt"))
-                    with open(output_fullpath, "w") as file:
-                        file.write(encrypted_lines)
+            with open(output_fullpath, "w") as outfile:
+                outfile.write(encrypted_lines)
         elif mode.strip().lower() == "decrypt":
             with open(input_fullpath, "r") as infile:
-                with open(output_fullpath, "w") as outfile:
-                    for lines in infile:
-                        decrypted_lines = str(caeser_shift_sentence(lines, key, "decrypt"))
-                        outfile.write(decrypted_lines)
+                for lines in infile:
+                    decrypted_lines = str(caeser_shift_sentence(lines, key, "decrypt"))
+            with open(output_fullpath, "w") as outfile:
+                outfile.write(decrypted_lines)
         else:
             print("Mode must be either encrypt or decrypt")
     else:
         print("Error message. File does not exist.")
 
-caesar_shift_file(input_fullpath, output_fullpath, 5, "encrypt")
+
 # ## Task 5: Brute Force Hacking
 # ### Attempts to decrypt a file by testing all possible keys and printing the results for each key.
 
@@ -164,7 +164,16 @@ caesar_shift_file(input_fullpath, output_fullpath, 5, "encrypt")
 
 # *Solution: Loop through all possible permutations to find the key, then decrypt the file!*
 
+encrypted_fullpath = os.path.join(filepath, "CT08_11/encrypted.txt")
 
+def brute_force_decrypt(encrypted_fullpath):
+    with open(encrypted_fullpath, "r") as file:
+        for lines in file:
+            sentence = lines
+            for i in range(-95, 96, 1):
+                caeser_shift_sentence(sentence, i, "decrypt")
+
+print(brute_force_decrypt(encrypted_fullpath))
 
 # ## Task 6: Interactive Menu System
 # ### Provides a menu interface for users to interact with the Caesar cipher program.
