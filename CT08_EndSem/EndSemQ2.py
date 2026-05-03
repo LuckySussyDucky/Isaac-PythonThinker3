@@ -110,3 +110,5 @@ Bad Reviews: {bad_counter}
 Percentage of Good Reviews: {good_percentage}%
 Overall Rating: {rating}
 ''')
+
+
