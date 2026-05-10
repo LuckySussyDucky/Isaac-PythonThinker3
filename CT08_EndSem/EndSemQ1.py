@@ -53,6 +53,13 @@ customer_spending = {
     "Laura": 689
     }
 
+non_vip = {
+
+}
+
+vip = {
+
+}
 # ============================================================
 # Step 2: Loop through customer_spending
 # ============================================================
@@ -64,19 +71,21 @@ for item, value in customer_spending.items():
 # ============================================================
 
     if value < 1000:
-
-        # ============================================================
-        # Step 4: Print customer messages
-        # ============================================================
-
-        print(f"Hi {item}, spend ${1000 - value} more to become a VIP member!")
+        non_vip[item] = value
+       
     else:
+        vip[item] = value
 
-        # ============================================================
-        # Step 4: Print customer messages
-        # ============================================================
-        
-        print(f"Hi {item}, you are now a VIP! Congratulations!")
+
+# ============================================================
+# Step 4: Print customer messages
+# ============================================================
+    
+for item, value in vip.items():
+    print(f"Hi {item}, you are now a VIP! Congratulations!")
+
+for item, value in non_vip.items():
+    print(f"Hi {item}, spend ${1000 - value} more to become a VIP member!")
 
 
 

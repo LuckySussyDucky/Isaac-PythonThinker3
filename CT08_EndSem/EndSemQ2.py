@@ -60,7 +60,7 @@ with open(review_fullpath, "r") as file:
         if "good" in lines.lower().strip():
             good_counter += 1
         if "bad" in lines.lower().strip():
-             bad_counter += 1
+            bad_counter += 1
         line += 1
         for char in lines:
             character_counter += 1
